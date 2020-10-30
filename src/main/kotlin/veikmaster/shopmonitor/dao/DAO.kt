@@ -6,7 +6,8 @@ import java.io.Serializable
 import java.util.*
 
 interface DAO: Serializable {
-    public abstract val monitors: HashMap<UUID, MutableList<Monitor>>
-    public abstract val monitorLocations: HashMap<Location, Monitor>
+    public abstract var monitors: HashMap<UUID, MutableList<Monitor>>
+    public abstract var monitorLocations: HashMap<Location, Monitor>
+    public abstract fun load()
     public abstract fun save()
 }

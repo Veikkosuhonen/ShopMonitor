@@ -1,6 +1,7 @@
 package main.kotlin.veikmaster.shopmonitor
 
 import main.kotlin.veikmaster.shopmonitor.dao.FakeDAO
+import main.kotlin.veikmaster.shopmonitor.dao.FileDAO
 import org.bukkit.Location
 import org.bukkit.plugin.java.JavaPlugin
 import java.util.*
@@ -8,13 +9,13 @@ import kotlin.collections.HashMap
 
 class ShopMonitor: JavaPlugin() {
 
-    val dao = FakeDAO()
+    val dao = FileDAO("\\plugins\\ShopMonitor\\data")
     lateinit var monitors: HashMap<UUID, MutableList<Monitor>>
     lateinit var monitorLocations: HashMap<Location, Monitor>
     val installNames = HashMap<UUID, String>()
 
     override fun onEnable() {
-        getData()
+        loadData()
         val installer = Installer(installNames, monitors, monitorLocations)
 
         val eventListener = ContainerEventListener(monitorLocations, installer)
@@ -31,7 +32,8 @@ class ShopMonitor: JavaPlugin() {
         saveData()
     }
 
-    fun getData() {
+    fun loadData() {
+        dao.load()
         monitors = dao.monitors
         monitorLocations = dao.monitorLocations
     }
