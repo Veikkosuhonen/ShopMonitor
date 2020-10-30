@@ -1,7 +1,7 @@
-package main.kotlin.veikmaster.shopmonitor
+package com.github.veikkosuhonen.shopmonitor
 
-import main.kotlin.veikmaster.shopmonitor.dao.FakeDAO
-import main.kotlin.veikmaster.shopmonitor.dao.FileDAO
+import com.github.veikkosuhonen.shopmonitor.dao.FakeDAO
+import com.github.veikkosuhonen.shopmonitor.dao.FileDAO
 import org.bukkit.Location
 import org.bukkit.plugin.java.JavaPlugin
 import java.util.*

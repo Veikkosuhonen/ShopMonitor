@@ -1,4 +1,4 @@
-package main.kotlin.veikmaster.shopmonitor
+package com.github.veikkosuhonen.shopmonitor
 
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener

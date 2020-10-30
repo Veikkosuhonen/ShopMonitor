@@ -1,6 +1,6 @@
-package main.kotlin.veikmaster.shopmonitor.dao
+package com.github.veikkosuhonen.shopmonitor.dao
 
-import main.kotlin.veikmaster.shopmonitor.Monitor
+import com.github.veikkosuhonen.shopmonitor.Monitor
 import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.util.io.BukkitObjectInputStream
