@@ -17,8 +17,8 @@ class Installer(val installNames: HashMap<UUID, String>,
                 Messager.sendMessage(player, "§cCannot install: there already is a monitor here!§r")
                 return
             }
-            val monitor = Monitor(installNames[id]!!)
-            Messager.sendMessage(player, "§3Installed §6" + monitor.name)
+            val monitor = Monitor(location, installNames[id]!!)
+            Messager.sendMessage(player, "§3Installed §6§l" + monitor.name)
             installNames[id] = ""
             monitors[id]?.let {
                 it.add(monitor)

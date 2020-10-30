@@ -2,7 +2,7 @@ main: main.kotlin.veikmaster.shopmonitor.ShopMonitor
 api-version: '1.16'
 
 name: ShopMonitor
-version: '0.1.0'
+version: '0.2.0'
 description: ShopMonitor allows players to monitor interactions with containers
 author: Veikmaster
 website: github.com/Veikkosuhonen/ShopMonitor

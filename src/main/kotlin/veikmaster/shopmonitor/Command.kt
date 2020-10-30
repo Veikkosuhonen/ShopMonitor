@@ -25,6 +25,7 @@ class Command(
                 if (args.size != 2) {
                     return false
                 }
+                Messager.sendMessage(player, "§3Open a container to install §6§l" + args[1])
                 nameToInstallMonitor[player.uniqueId] = args[1]
                 return true
             }
@@ -32,10 +33,6 @@ class Command(
             "view" -> {
                 Messager.sendView(player, monitors[player.uniqueId])
                 return true
-            }
-
-            "list" -> {
-
             }
 
             "rename" -> {
@@ -90,6 +87,8 @@ class Command(
 
                 return true
             }
+
+
         }
         return false
     }

@@ -1,12 +1,15 @@
 package main.kotlin.veikmaster.shopmonitor
 
+import org.bukkit.Location
 import java.io.Serializable
 
 class Monitor(val transactions: MutableList<Transaction>,
               val contents: MutableList<Transaction>,
+              val location: Location,
               var name: String,
              ): Serializable {
-    constructor(name: String): this(mutableListOf(), mutableListOf(), name)
+
+    constructor(location: Location, name: String): this(mutableListOf(), mutableListOf(), location, name, )
 
     var unread = false
 

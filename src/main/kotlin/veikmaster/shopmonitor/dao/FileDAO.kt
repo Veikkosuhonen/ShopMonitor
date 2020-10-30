@@ -3,7 +3,6 @@ package main.kotlin.veikmaster.shopmonitor.dao
 import main.kotlin.veikmaster.shopmonitor.Monitor
 import org.bukkit.Bukkit
 import org.bukkit.Location
-import org.bukkit.craftbukkit.libs.jline.internal.Log
 import org.bukkit.util.io.BukkitObjectInputStream
 import org.bukkit.util.io.BukkitObjectOutputStream
 import java.io.*

@@ -33,7 +33,10 @@ object Messager { //that's a singleton
 
         monitors.forEach { it ->
             it.unread = false
-            builder.append("\n§6§l" + it.name + "§r")
+            builder.append(TextComponent("\n§6§l" + it.name + "§r"))
+            builder.event(HoverEvent(HoverEvent.Action.SHOW_TEXT, arrayOf(TextComponent(
+                    "" + it.location.x + " " + it.location.y + " " + it.location.z
+            ))))
 
             builder.append(TextComponent(" §a[m]§r"))
             builder.event(HoverEvent(HoverEvent.Action.SHOW_TEXT, arrayOf(TextComponent("Mark as read"))))
@@ -50,16 +53,20 @@ object Messager { //that's a singleton
             player.spigot().sendMessage(*builder.create())
             builder.parts.clear()
 
-            it.transactions.forEach {t ->
-                val name = t.material.toString().toLowerCase().replace('_', ' ').capitalize()
-                if (t.amount > 0) {
-                    builder.append(TextComponent(" §a+" + t.amount + " §r" + name + "\n"))
-                } else {
-                    builder.append(TextComponent("§c" + t.amount + " §r" + name + "\n"))
+            if (it.transactions.isEmpty()) {
+                builder.append(" §7§oNo events§r\n")
+            } else {
+                it.transactions.forEach { t ->
+                    val name = t.material.toString().toLowerCase().replace('_', ' ').capitalize()
+                    if (t.amount > 0) {
+                        builder.append(TextComponent(" §a+" + t.amount + " §r" + name + "\n"))
+                    } else {
+                        builder.append(TextComponent("§c" + t.amount + " §r" + name + "\n"))
+                    }
                 }
             }
         }
-        builder.append(TextComponent("§a[Add new]"))
+        builder.append(TextComponent("\n§3[Add new]"))
         builder.event(HoverEvent(HoverEvent.Action.SHOW_TEXT, arrayOf(TextComponent("Click"))))
         builder.event(ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/monitor install <name>"))
 
