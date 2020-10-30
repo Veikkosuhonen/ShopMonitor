@@ -1,4 +1,4 @@
-main: main.kotlin.veikmaster.shopmonitor.ShopMonitor
+main: com.github.veikkosuhonen.shopmonitor.ShopMonitor
 api-version: '1.16'
 
 name: ShopMonitor

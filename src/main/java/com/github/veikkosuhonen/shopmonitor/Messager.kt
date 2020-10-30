@@ -1,9 +1,10 @@
 package com.github.veikkosuhonen.shopmonitor
 
 import net.md_5.bungee.api.ChatMessageType
-import net.md_5.bungee.api.chat.*
-import net.md_5.bungee.api.chat.hover.content.Content
-import net.md_5.bungee.api.chat.hover.content.Item
+import net.md_5.bungee.api.chat.ClickEvent
+import net.md_5.bungee.api.chat.ComponentBuilder
+import net.md_5.bungee.api.chat.HoverEvent
+import net.md_5.bungee.api.chat.TextComponent
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 

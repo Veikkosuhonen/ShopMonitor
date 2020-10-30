@@ -1,6 +1,5 @@
 package com.github.veikkosuhonen.shopmonitor
 
-import com.github.veikkosuhonen.shopmonitor.dao.FakeDAO
 import com.github.veikkosuhonen.shopmonitor.dao.FileDAO
 import org.bukkit.Location
 import org.bukkit.plugin.java.JavaPlugin

@@ -78,7 +78,7 @@ class Command(
                     }
                     return true
                 } else if (args.size == 2) {
-                    val monitor = monitors[player.uniqueId]?.find { it.name == args[1] }?.let {
+                    monitors[player.uniqueId]?.find { it.name == args[1] }?.let {
                         Messager.sendDeleteConfirmMessage(player, it.name)
                         return true
                     }
