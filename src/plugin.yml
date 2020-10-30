@@ -13,7 +13,16 @@ commands:
     permission: monitor.core
     usage: "Usage: /<command> [install <name> | view [-details] | list]"
 
+  monitorop:
+    description: Operator command to see monitors in containers
+    permission: monitor.op
+    usage: "Usage /<command> truesight"
+
 permissions:
   monitor.core:
     description: Core functionality
     default: true
+
+  monitor.op:
+    description: Operator functionality
+    default: op

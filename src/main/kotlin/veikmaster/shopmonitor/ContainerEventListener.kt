@@ -7,9 +7,14 @@ import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.inventory.InventoryCloseEvent
 import org.bukkit.event.inventory.InventoryOpenEvent
+import java.util.*
+import kotlin.collections.HashMap
+import kotlin.collections.HashSet
 
 class ContainerEventListener(val monitorLocations: HashMap<Location, Monitor>,
-                             val installer: Installer): Listener {
+                             val installer: Installer,
+                             val trueSight: HashSet<UUID>
+): Listener {
 
     @EventHandler
     fun onInventoryOpenEvent(event: InventoryOpenEvent) {
@@ -25,6 +30,10 @@ class ContainerEventListener(val monitorLocations: HashMap<Location, Monitor>,
     @EventHandler
     fun onInventoryCloseEvent(event: InventoryCloseEvent) {
         val monitor = monitorLocations[event.inventory.location] ?: return
+
+        if (trueSight.contains(event.player.uniqueId)) {
+            Bukkit.getPlayer(event.player.uniqueId)?.let { Messager.sendTrueSight(it, monitor) }
+        }
 
         val changes = HashMap<Material, Int>()
         event.view.topInventory.contents.filterNotNull().forEach {

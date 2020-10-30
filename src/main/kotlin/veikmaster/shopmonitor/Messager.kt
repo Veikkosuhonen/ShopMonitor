@@ -4,6 +4,7 @@ import net.md_5.bungee.api.ChatMessageType
 import net.md_5.bungee.api.chat.*
 import net.md_5.bungee.api.chat.hover.content.Content
 import net.md_5.bungee.api.chat.hover.content.Item
+import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 
 object Messager { //that's a singleton
@@ -32,40 +33,10 @@ object Messager { //that's a singleton
         }
 
         monitors.forEach { it ->
+            monitorView(builder, it, player)
             it.unread = false
-            builder.append(TextComponent("\n§6§l" + it.name + "§r"))
-            builder.event(HoverEvent(HoverEvent.Action.SHOW_TEXT, arrayOf(TextComponent(
-                    "" + it.location.x + " " + it.location.y + " " + it.location.z
-            ))))
-
-            builder.append(TextComponent(" §a[m]§r"))
-            builder.event(HoverEvent(HoverEvent.Action.SHOW_TEXT, arrayOf(TextComponent("Mark as read"))))
-            builder.event(ClickEvent(ClickEvent.Action.RUN_COMMAND, "/monitor clear " + it.name))
-
-            builder.append(TextComponent(" §e[r]§r"))
-            builder.event(HoverEvent(HoverEvent.Action.SHOW_TEXT, arrayOf(TextComponent("Rename this monitor"))))
-            builder.event(ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/monitor rename " + it.name + " <newname>"))
-
-            builder.append(TextComponent(" §c[x]§r"))
-            builder.event(HoverEvent(HoverEvent.Action.SHOW_TEXT, arrayOf(TextComponent("Delete this monitor"))))
-            builder.event(ClickEvent(ClickEvent.Action.RUN_COMMAND, "/monitor delete " + it.name))
-
-            player.spigot().sendMessage(*builder.create())
-            builder.parts.clear()
-
-            if (it.transactions.isEmpty()) {
-                builder.append(" §7§oNo events§r\n")
-            } else {
-                it.transactions.forEach { t ->
-                    val name = t.material.toString().toLowerCase().replace('_', ' ').capitalize()
-                    if (t.amount > 0) {
-                        builder.append(TextComponent(" §a+" + t.amount + " §r" + name + "\n"))
-                    } else {
-                        builder.append(TextComponent("§c" + t.amount + " §r" + name + "\n"))
-                    }
-                }
-            }
         }
+
         builder.append(TextComponent("\n§3[Add new]"))
         builder.event(HoverEvent(HoverEvent.Action.SHOW_TEXT, arrayOf(TextComponent("Click"))))
         builder.event(ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/monitor install <name>"))
@@ -86,6 +57,47 @@ object Messager { //that's a singleton
 
     fun sendMessage(player: Player, message: String) {
         player.sendMessage("$prefix $message")
+    }
+
+    fun sendTrueSight(player: Player, monitor: Monitor) {
+        val builder = ComponentBuilder("§lView of §r" + (Bukkit.getPlayer(monitor.ownerId)?.displayName ?: "[NOT FOUND]") + "'s §lmonitor")
+        monitorView(builder, monitor, player)
+        player.spigot().sendMessage(*builder.create())
+    }
+
+    private fun monitorView(builder: ComponentBuilder, it: Monitor, player: Player) {
+        builder.append(TextComponent("\n§6§l" + it.name + "§r"))
+        builder.event(HoverEvent(HoverEvent.Action.SHOW_TEXT, arrayOf(TextComponent(
+                "" + it.location.x + " " + it.location.y + " " + it.location.z
+        ))))
+
+        builder.append(TextComponent(" §a[m]§r"))
+        builder.event(HoverEvent(HoverEvent.Action.SHOW_TEXT, arrayOf(TextComponent("Mark as read"))))
+        builder.event(ClickEvent(ClickEvent.Action.RUN_COMMAND, "/monitor clear " + it.name))
+
+        builder.append(TextComponent(" §e[r]§r"))
+        builder.event(HoverEvent(HoverEvent.Action.SHOW_TEXT, arrayOf(TextComponent("Rename this monitor"))))
+        builder.event(ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/monitor rename " + it.name + " <newname>"))
+
+        builder.append(TextComponent(" §c[x]§r"))
+        builder.event(HoverEvent(HoverEvent.Action.SHOW_TEXT, arrayOf(TextComponent("Delete this monitor"))))
+        builder.event(ClickEvent(ClickEvent.Action.RUN_COMMAND, "/monitor delete " + it.name))
+
+        player.spigot().sendMessage(*builder.create())
+        builder.parts.clear()
+
+        if (it.transactions.isEmpty()) {
+            builder.append(" §7§oNo events§r\n")
+        } else {
+            it.transactions.forEach { t ->
+                val name = t.material.toString().toLowerCase().replace('_', ' ').capitalize()
+                if (t.amount > 0) {
+                    builder.append(TextComponent(" §a+" + t.amount + " §r" + name + "\n"))
+                } else {
+                    builder.append(TextComponent("§c" + t.amount + " §r" + name + "\n"))
+                }
+            }
+        }
     }
 
 }

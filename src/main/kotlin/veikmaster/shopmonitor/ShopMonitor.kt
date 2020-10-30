@@ -6,6 +6,7 @@ import org.bukkit.Location
 import org.bukkit.plugin.java.JavaPlugin
 import java.util.*
 import kotlin.collections.HashMap
+import kotlin.collections.HashSet
 
 class ShopMonitor: JavaPlugin() {
 
@@ -13,12 +14,13 @@ class ShopMonitor: JavaPlugin() {
     lateinit var monitors: HashMap<UUID, MutableList<Monitor>>
     lateinit var monitorLocations: HashMap<Location, Monitor>
     val installNames = HashMap<UUID, String>()
+    val trueSight = HashSet<UUID>()
 
     override fun onEnable() {
         loadData()
         val installer = Installer(installNames, monitors, monitorLocations)
 
-        val eventListener = ContainerEventListener(monitorLocations, installer)
+        val eventListener = ContainerEventListener(monitorLocations, installer, trueSight)
         server.pluginManager.registerEvents(eventListener, this)
 
         val loginEventListener = LoginEventListener(monitors)
@@ -26,6 +28,9 @@ class ShopMonitor: JavaPlugin() {
 
         val command = Command(installNames, monitors)
         getCommand("monitor")?.setExecutor(command)
+
+        val opCommand = OPCommand(trueSight)
+        getCommand("monitorop")?.setExecutor(opCommand)
     }
 
     override fun onDisable() {

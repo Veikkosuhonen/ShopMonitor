@@ -6,6 +6,7 @@ import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 import java.util.*
 import kotlin.collections.HashMap
+import kotlin.collections.HashSet
 
 class Command(
         val nameToInstallMonitor: HashMap<UUID, String>,
@@ -87,7 +88,6 @@ class Command(
 
                 return true
             }
-
 
         }
         return false
