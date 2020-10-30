@@ -1,12 +1,13 @@
-package com.github.veikkosuhonen.shopmonitor
+package com.github.veikkosuhonen.shopmonitor.command
 
+import com.github.veikkosuhonen.shopmonitor.ui.Messager
+import com.github.veikkosuhonen.shopmonitor.monitor.Monitor
 import org.bukkit.Bukkit
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 import java.util.*
 import kotlin.collections.HashMap
-import kotlin.collections.HashSet
 
 class Command(
         val nameToInstallMonitor: HashMap<UUID, String>,

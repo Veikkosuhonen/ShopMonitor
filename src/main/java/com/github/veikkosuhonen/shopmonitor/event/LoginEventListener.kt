@@ -1,5 +1,7 @@
-package com.github.veikkosuhonen.shopmonitor
+package com.github.veikkosuhonen.shopmonitor.event
 
+import com.github.veikkosuhonen.shopmonitor.ui.Messager
+import com.github.veikkosuhonen.shopmonitor.monitor.Monitor
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerJoinEvent

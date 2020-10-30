@@ -1,6 +1,14 @@
 package com.github.veikkosuhonen.shopmonitor
 
+import com.github.veikkosuhonen.shopmonitor.command.Command
+import com.github.veikkosuhonen.shopmonitor.command.CommandTabCompleter
+import com.github.veikkosuhonen.shopmonitor.command.OPCommand
+import com.github.veikkosuhonen.shopmonitor.command.OPCommandTabCompleter
 import com.github.veikkosuhonen.shopmonitor.dao.FileDAO
+import com.github.veikkosuhonen.shopmonitor.event.ContainerEventListener
+import com.github.veikkosuhonen.shopmonitor.event.LoginEventListener
+import com.github.veikkosuhonen.shopmonitor.monitor.Installer
+import com.github.veikkosuhonen.shopmonitor.monitor.Monitor
 import org.bukkit.Location
 import org.bukkit.plugin.java.JavaPlugin
 import java.util.*
@@ -19,17 +27,23 @@ class ShopMonitor: JavaPlugin() {
         loadData()
         val installer = Installer(installNames, monitors, monitorLocations)
 
+        // ------- Event listeners -------------------------
         val eventListener = ContainerEventListener(monitorLocations, installer, trueSight)
         server.pluginManager.registerEvents(eventListener, this)
-
         val loginEventListener = LoginEventListener(monitors)
         server.pluginManager.registerEvents(loginEventListener, this)
 
+        // ------- Monitor command -------------------------
         val command = Command(installNames, monitors)
         getCommand("monitor")?.setExecutor(command)
+        val commandTabCompleter = CommandTabCompleter(monitors)
+        getCommand("monitor")?.tabCompleter = commandTabCompleter
 
+        // ------ Operator command -------------------------
         val opCommand = OPCommand(trueSight)
         getCommand("monitorop")?.setExecutor(opCommand)
+        val opCommandTabCompleter = OPCommandTabCompleter()
+        getCommand("monitorop")?.tabCompleter = opCommandTabCompleter
     }
 
     override fun onDisable() {

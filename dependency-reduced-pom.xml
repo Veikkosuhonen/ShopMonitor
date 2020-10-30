@@ -48,9 +48,6 @@
             <goals>
               <goal>shade</goal>
             </goals>
-            <configuration>
-              <artifactSet />
-            </configuration>
           </execution>
         </executions>
       </plugin>

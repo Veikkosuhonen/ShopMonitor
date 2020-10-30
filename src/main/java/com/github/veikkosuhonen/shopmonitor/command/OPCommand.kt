@@ -1,5 +1,6 @@
-package com.github.veikkosuhonen.shopmonitor
+package com.github.veikkosuhonen.shopmonitor.command
 
+import com.github.veikkosuhonen.shopmonitor.ui.Messager
 import org.bukkit.Bukkit
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor

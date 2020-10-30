@@ -1,6 +1,6 @@
 package com.github.veikkosuhonen.shopmonitor.dao
 
-import com.github.veikkosuhonen.shopmonitor.Monitor
+import com.github.veikkosuhonen.shopmonitor.monitor.Monitor
 import org.bukkit.Location
 import java.util.*
 import kotlin.collections.HashMap

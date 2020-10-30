@@ -1,4 +1,4 @@
-package com.github.veikkosuhonen.shopmonitor
+package com.github.veikkosuhonen.shopmonitor.monitor
 
 import org.bukkit.Material
 import java.io.Serializable

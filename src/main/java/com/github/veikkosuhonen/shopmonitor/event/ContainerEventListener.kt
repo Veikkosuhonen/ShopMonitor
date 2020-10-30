@@ -1,5 +1,9 @@
-package com.github.veikkosuhonen.shopmonitor
+package com.github.veikkosuhonen.shopmonitor.event
 
+import com.github.veikkosuhonen.shopmonitor.ui.Messager
+import com.github.veikkosuhonen.shopmonitor.monitor.Installer
+import com.github.veikkosuhonen.shopmonitor.monitor.Monitor
+import com.github.veikkosuhonen.shopmonitor.monitor.Transaction
 import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.Material
