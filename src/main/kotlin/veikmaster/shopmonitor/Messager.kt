@@ -71,8 +71,8 @@ object Messager { //that's a singleton
                 "" + it.location.x + " " + it.location.y + " " + it.location.z
         ))))
 
-        builder.append(TextComponent(" §a[m]§r"))
-        builder.event(HoverEvent(HoverEvent.Action.SHOW_TEXT, arrayOf(TextComponent("Mark as read"))))
+        builder.append(TextComponent(" §a[c]§r"))
+        builder.event(HoverEvent(HoverEvent.Action.SHOW_TEXT, arrayOf(TextComponent("Clear events"))))
         builder.event(ClickEvent(ClickEvent.Action.RUN_COMMAND, "/monitor clear " + it.name))
 
         builder.append(TextComponent(" §e[r]§r"))
@@ -94,7 +94,7 @@ object Messager { //that's a singleton
                 if (t.amount > 0) {
                     builder.append(TextComponent(" §a+" + t.amount + " §r" + name + "\n"))
                 } else {
-                    builder.append(TextComponent("§c" + t.amount + " §r" + name + "\n"))
+                    builder.append(TextComponent(" §c" + t.amount + " §r" + name + "\n"))
                 }
             }
         }
