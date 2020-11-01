@@ -17,7 +17,7 @@ import kotlin.collections.HashSet
 
 class ShopMonitor: JavaPlugin() {
 
-    val dao = FileDAO("\\plugins\\ShopMonitor\\data")
+    val dao = FileDAO("./plugins/ShopMonitor/data")
     lateinit var monitors: HashMap<UUID, MutableList<Monitor>>
     lateinit var monitorLocations: HashMap<Location, Monitor>
     val installNames = HashMap<UUID, String>()
@@ -34,7 +34,7 @@ class ShopMonitor: JavaPlugin() {
         server.pluginManager.registerEvents(loginEventListener, this)
 
         // ------- Monitor command -------------------------
-        val command = Command(installNames, monitors)
+        val command = Command(monitors, installer)
         getCommand("monitor")?.setExecutor(command)
         val commandTabCompleter = CommandTabCompleter(monitors)
         getCommand("monitor")?.tabCompleter = commandTabCompleter

@@ -1,5 +1,6 @@
 package com.github.veikkosuhonen.shopmonitor.command
 
+import com.github.veikkosuhonen.shopmonitor.monitor.Installer
 import com.github.veikkosuhonen.shopmonitor.ui.Messager
 import com.github.veikkosuhonen.shopmonitor.monitor.Monitor
 import org.bukkit.Bukkit
@@ -10,8 +11,8 @@ import java.util.*
 import kotlin.collections.HashMap
 
 class Command(
-        val nameToInstallMonitor: HashMap<UUID, String>,
         val monitors: HashMap<UUID, MutableList<Monitor>>,
+        val installer: Installer
 ): CommandExecutor {
 
     override fun onCommand(cs: CommandSender, p1: Command, p2: String, args: Array<out String>): Boolean {
@@ -28,7 +29,7 @@ class Command(
                     return false
                 }
                 Messager.sendMessage(player, "§3Open a container to install §6§l" + args[1])
-                nameToInstallMonitor[player.uniqueId] = args[1]
+                installer.setToInstall(player.uniqueId, args[1])
                 return true
             }
 
@@ -72,11 +73,7 @@ class Command(
             "delete" -> {
                 if (args.size == 3 && args[2] == "confirm") {
                     val monitor = monitors[player.uniqueId]?.find { it.name == args[1] }
-                    if (monitors[player.uniqueId]?.remove(monitor) != true) {
-                        Messager.sendMessage(player, "§cCannot find monitor '${args[1]}'§r")
-                    } else {
-                        Messager.sendMessage(player, "§6§l${args[1]}§3 deleted§r")
-                    }
+                    installer.delete(monitor, player)
                     return true
                 } else if (args.size == 2) {
                     monitors[player.uniqueId]?.find { it.name == args[1] }?.let {

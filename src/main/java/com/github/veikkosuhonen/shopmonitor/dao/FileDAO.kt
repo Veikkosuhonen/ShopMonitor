@@ -13,7 +13,7 @@ import java.util.zip.GZIPInputStream
 import java.util.zip.GZIPOutputStream
 
 class FileDAO(filePath: String): DAO {
-    private val path = Paths.get("").toAbsolutePath().toString() + filePath
+    private val path = filePath
 
     override fun load() {
         val file = File(path)

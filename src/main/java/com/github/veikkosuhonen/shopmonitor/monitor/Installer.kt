@@ -3,6 +3,7 @@ package com.github.veikkosuhonen.shopmonitor.monitor
 import com.github.veikkosuhonen.shopmonitor.ui.Messager
 import org.bukkit.Bukkit
 import org.bukkit.Location
+import org.bukkit.entity.Player
 import java.util.*
 
 class Installer(val installNames: HashMap<UUID, String>,
@@ -28,5 +29,18 @@ class Installer(val installNames: HashMap<UUID, String>,
             monitors[id] = mutableListOf(monitor)
             monitorLocations[location] = monitor
         }
+    }
+
+    fun delete(monitor: Monitor?, player: Player) {
+        if (monitors[monitor?.ownerId]?.remove(monitor) != true) {
+            Messager.sendMessage(player, "§cCannot find monitor '${monitor?.name}'§r")
+        } else {
+            monitorLocations.remove(monitor?.location)
+            Messager.sendMessage(player, "§6§l${monitor?.name}§3 deleted§r")
+        }
+    }
+
+    fun setToInstall(id: UUID, name: String) {
+        installNames[id] = name
     }
 }
