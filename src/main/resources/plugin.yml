@@ -2,7 +2,7 @@ main: com.github.veikkosuhonen.shopmonitor.ShopMonitor
 api-version: '1.16'
 
 name: ShopMonitor
-version: '0.3.3'
+version: '0.3.5'
 description: ShopMonitor allows players to monitor interactions with containers
 author: Veikmaster
 website: github.com/Veikkosuhonen/ShopMonitor

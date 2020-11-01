@@ -6,7 +6,7 @@
 
     <groupId>com.github.veikkosuhonen.shopmonitor</groupId>
     <artifactId>ShopMonitor</artifactId>
-    <version>0.3.3</version>
+    <version>0.3.5</version>
     <packaging>jar</packaging>
 
     <properties>
