@@ -24,6 +24,7 @@ class Command(
         } //default to view
 
         when(args[0]) {
+
             "install" -> {
                 if (args.size != 2) {
                     return false
@@ -83,7 +84,6 @@ class Command(
                     Messager.sendMessage(player, "§cCannot find monitor '${args[1]}'§r")
                     return true
                 }
-
                 return true
             }
 

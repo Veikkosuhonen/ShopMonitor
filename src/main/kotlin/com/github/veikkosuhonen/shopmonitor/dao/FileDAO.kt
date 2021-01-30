@@ -6,13 +6,13 @@ import org.bukkit.Location
 import org.bukkit.util.io.BukkitObjectInputStream
 import org.bukkit.util.io.BukkitObjectOutputStream
 import java.io.*
-import java.nio.file.Paths
 import java.util.*
 import java.util.logging.Level
 import java.util.zip.GZIPInputStream
 import java.util.zip.GZIPOutputStream
 
 class FileDAO(filePath: String): DAO {
+
     private val path = filePath
 
     override fun load() {

@@ -9,7 +9,9 @@ import java.util.*
 import kotlin.collections.HashMap
 
 class CommandTabCompleter(val monitors: HashMap<UUID, MutableList<Monitor>>): TabCompleter {
+
     val SUBCOMMANDS = mutableListOf("view", "install", "rename", "delete", "clear")
+
     override fun onTabComplete(cs: CommandSender, p1: Command, p2: String, args: Array<out String>): MutableList<String> {
         val monitorsNames = monitors[Bukkit.getPlayer(cs.name)?.uniqueId]?.map {it.name} ?: mutableListOf<String>()
         return when (args.size) {

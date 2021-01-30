@@ -6,9 +6,10 @@ import org.bukkit.Location
 import org.bukkit.entity.Player
 import java.util.*
 
-class Installer(val installNames: HashMap<UUID, String>,
-                val monitors: HashMap<UUID, MutableList<Monitor>>,
-                val monitorLocations: HashMap<Location, Monitor>,
+class Installer(
+        val installNames: HashMap<UUID, String>,
+        val monitors: HashMap<UUID, MutableList<Monitor>>,
+        val monitorLocations: HashMap<Location, Monitor>,
 ) {
 
     fun install(location: Location, id: UUID) {

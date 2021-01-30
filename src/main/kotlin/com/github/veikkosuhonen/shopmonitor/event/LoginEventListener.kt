@@ -8,8 +8,7 @@ import org.bukkit.event.player.PlayerJoinEvent
 import java.util.*
 import kotlin.collections.HashMap
 
-class LoginEventListener(val monitors: HashMap<UUID, MutableList<Monitor>>,
-): Listener {
+class LoginEventListener(val monitors: HashMap<UUID, MutableList<Monitor>>): Listener {
 
     @EventHandler
     fun onPlayerJoinEvent(event: PlayerJoinEvent) {

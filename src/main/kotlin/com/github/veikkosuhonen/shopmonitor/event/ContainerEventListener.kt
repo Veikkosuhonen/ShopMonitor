@@ -15,9 +15,10 @@ import java.util.*
 import kotlin.collections.HashMap
 import kotlin.collections.HashSet
 
-class ContainerEventListener(val monitorLocations: HashMap<Location, Monitor>,
-                             val installer: Installer,
-                             val trueSight: HashSet<UUID>
+class ContainerEventListener(
+        val monitorLocations: HashMap<Location, Monitor>,
+        val installer: Installer,
+        val trueSight: HashSet<UUID>
 ): Listener {
 
     @EventHandler
