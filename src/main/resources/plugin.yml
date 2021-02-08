@@ -2,7 +2,7 @@ main: com.github.veikkosuhonen.shopmonitor.ShopMonitor
 api-version: '1.16'
 
 name: ShopMonitor
-version: '0.3.5'
+version: '0.4.0'
 description: ShopMonitor allows players to monitor interactions with containers
 author: Veikmaster
 website: github.com/Veikkosuhonen/ShopMonitor
@@ -18,6 +18,11 @@ commands:
     permission: monitor.op
     usage: "Usage /<command> truesight"
 
+  monitorstats:
+    description: Statistics about monitors
+    permission: monitor.stats
+    usage: "Usage /<command> [-material <material>]"
+
 permissions:
   monitor.core:
     description: Core functionality
@@ -26,3 +31,7 @@ permissions:
   monitor.op:
     description: Operator functionality
     default: op
+
+  monitor.stats:
+    description: General statistics
+    default: true

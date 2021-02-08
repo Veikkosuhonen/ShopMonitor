@@ -1,15 +1,14 @@
 package com.github.veikkosuhonen.shopmonitor
 
-import com.github.veikkosuhonen.shopmonitor.command.Command
-import com.github.veikkosuhonen.shopmonitor.command.CommandTabCompleter
-import com.github.veikkosuhonen.shopmonitor.command.OPCommand
-import com.github.veikkosuhonen.shopmonitor.command.OPCommandTabCompleter
+import com.github.veikkosuhonen.shopmonitor.command.*
 import com.github.veikkosuhonen.shopmonitor.dao.FileDAO
 import com.github.veikkosuhonen.shopmonitor.event.ContainerEventListener
 import com.github.veikkosuhonen.shopmonitor.event.LoginEventListener
 import com.github.veikkosuhonen.shopmonitor.monitor.Installer
 import com.github.veikkosuhonen.shopmonitor.monitor.Monitor
+import com.github.veikkosuhonen.shopmonitor.stats.Statistics
 import org.bukkit.Location
+import org.bukkit.Statistic
 import org.bukkit.plugin.java.JavaPlugin
 import java.util.*
 import kotlin.collections.HashMap
@@ -44,6 +43,11 @@ class ShopMonitor: JavaPlugin() {
         getCommand("monitorop")?.setExecutor(opCommand)
         val opCommandTabCompleter = OPCommandTabCompleter()
         getCommand("monitorop")?.tabCompleter = opCommandTabCompleter
+
+        // ------ Stats command ---------------------------
+        val stats = Statistics(monitors)
+        val statsCommand = StatsCommand(stats)
+        getCommand("monitorstats")?.setExecutor(statsCommand)
     }
 
     override fun onDisable() {

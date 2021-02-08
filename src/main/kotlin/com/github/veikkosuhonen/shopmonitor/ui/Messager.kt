@@ -7,6 +7,7 @@ import net.md_5.bungee.api.chat.ComponentBuilder
 import net.md_5.bungee.api.chat.HoverEvent
 import net.md_5.bungee.api.chat.TextComponent
 import org.bukkit.Bukkit
+import org.bukkit.Material
 import org.bukkit.entity.Player
 
 object Messager { //that's a singleton
@@ -102,6 +103,13 @@ object Messager { //that's a singleton
         }
     }
 
+    fun sendMaterialStats(player: Player, material: Material, count: Int) {
+        sendMessage(player, "$material: $count units traded in monitors")
+    }
+
+    fun sendGeneralStats(player: Player, monitorCount: Int, userCount: Int, averageMonitors: Double) {
+        sendMessage(player, "$userCount users, $monitorCount monitors, $averageMonitors monitors per user")
+    }
 }
 
 const val prefix = "[ShopMonitor]"
